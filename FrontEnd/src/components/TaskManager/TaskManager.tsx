@@ -7,7 +7,7 @@ interface Task {
   status: string;
 }
 
-function App() {
+function TaskManager() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
@@ -31,4 +31,4 @@ function App() {
   );
 }
 
-export default App;
+export default TaskManager;
