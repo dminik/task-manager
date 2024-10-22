@@ -5,6 +5,16 @@ import { calculate } from './calculator';  // Import logic from the calculator m
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
+app.get('/tasks', (req, res) => {
+  res.send([
+    { id: 1, name: 'First Task', status: 'Pending' },
+    { id: 2, name: 'Second Task', status: 'Completed' },
+  ]);
+});
+
+
 const validateInput = (req: any): { number1: number, number2: number, operation: string } | null => {
   const { num1, num2, operation } = req.query;
 
