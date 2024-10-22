@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Group, Code } from '@mantine/core';
+import {  AppShell,  } from '@mantine/core';
 import {
   IconBellRinging,
   IconFingerprint,
@@ -11,8 +11,9 @@ import {
   IconSwitchHorizontal,
   IconLogout,
 } from '@tabler/icons-react';
-import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './NavbarSimple.module.css';
+import { useDisclosure } from '@mantine/hooks';
+import { Header } from '../Header/Header';
 
 const data = [
   { link: '', label: 'Notifications', icon: IconBellRinging },
@@ -24,7 +25,7 @@ const data = [
   { link: '', label: 'Other Settings', icon: IconSettings },
 ];
 
-export function HomePageLayout() {
+export function NavLayout() {
   const [active, setActive] = useState('Billing');
 
   const links = data.map((item) => (
@@ -46,10 +47,6 @@ export function HomePageLayout() {
   return (
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>
-        <Group className={classes.header} justify="space-between">
-          <MantineLogo size={28} />
-          <Code fw={700}>v3.1.2</Code>
-        </Group>
         {links}
       </div>
 
@@ -65,5 +62,23 @@ export function HomePageLayout() {
         </a>
       </div>
     </nav>
+  );
+}
+
+export function HomePageLayout() {
+  const [opened, { toggle }] = useDisclosure();
+
+  return (
+    <AppShell
+      header={{ height: 60 }}
+      navbar={{ width: 300, breakpoint: 0 }}>
+      <AppShell.Navbar>
+        <NavLayout />
+      </AppShell.Navbar>
+      <AppShell.Header>
+        <Header />
+      </AppShell.Header>
+
+    </AppShell>
   );
 }
