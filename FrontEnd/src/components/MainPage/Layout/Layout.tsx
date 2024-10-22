@@ -16,7 +16,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { Header } from '../Header/Header';
 import { NavLayout } from '../NavBar/NavBar';
 
-export function HomePageLayout() {
+export function Layout() {
   const [opened, { toggle }] = useDisclosure();
 
   return (
