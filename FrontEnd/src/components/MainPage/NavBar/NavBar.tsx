@@ -48,10 +48,10 @@ export function NavLayout() {
       </div>
 
       <div className={classes.footer}>
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+        <Link to="#" className={classes.link} onClick={(event) => event.preventDefault()}>
           <IconHelpCircle className={classes.linkIcon} stroke={1.5} />
           <span>Help</span>
-        </a>
+        </Link>
       </div>
     </nav>
   );

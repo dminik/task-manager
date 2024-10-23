@@ -5,6 +5,7 @@ import { NavLayout } from '../NavBar/NavBar';
 import { Outlet } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './Layout.module.css';
+import { Footer } from '../Footer/Footer';
 
 export function Layout() {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
@@ -18,6 +19,7 @@ export function Layout() {
         breakpoint: 'sm',
         collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
       }}
+      footer={{ height: 40 }}
     >
 
       <AppShell.Header>
@@ -40,6 +42,10 @@ export function Layout() {
       <AppShell.Main>
         <Outlet />
       </AppShell.Main>
+
+      <AppShell.Footer >
+        <Footer  />
+      </AppShell.Footer >
     </AppShell>
   );
 }
