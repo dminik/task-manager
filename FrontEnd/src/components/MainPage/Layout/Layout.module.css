@@ -1,0 +1,24 @@
+.navbar {
+  transition: width 1.9s ease;
+  display: flex;
+  justify-content: center;
+}
+
+.icon {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  cursor: pointer;
+  transform: translateY(-50%); 
+  transition: transform 0.7s ease;
+}
+
+.icon-rotated {
+  transform: rotate(180deg);
+}
+
+.nav-content {
+  flex: 1;
+  padding-top: 10px;
+  align-items: flex-start;
+}
