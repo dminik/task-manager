@@ -19,10 +19,10 @@ export function NavLayout() {
   const links = data.map((item) => (
     <Link
     className={classes.link}
-    to={item.link}  // Use `to` instead of `href`
+    to={item.link}
     key={item.label}
     data-active={item.label === active || undefined}
-    onClick={() => setActive(item.label)} // No need for preventDefault anymore
+    onClick={() => setActive(item.label)} 
   >
     <item.icon className={classes.linkIcon} stroke={1.5} />
     <span>{item.label}</span>
