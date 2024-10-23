@@ -26,6 +26,7 @@ export function NavLayout() {
       className={classes.link}
       to={item.link}
       key={item.label}
+
       data-active={item.label === active || undefined}
       onClick={() => setActive(item.label)}
     >
@@ -45,7 +46,7 @@ export function NavLayout() {
       <div className={classes.navbarMain}>{links}</div>
 
       <div className={classes.footer}>
-        <Link to="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+        <Link to="#" className={classes.link} >
           <IconHelpCircle className={classes.linkIcon} stroke={1.5} />
           <span>Help</span>
         </Link>
