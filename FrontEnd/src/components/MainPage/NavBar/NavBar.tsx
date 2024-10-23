@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import {
-  IconBellRinging,
+  IconHeartHandshake,
+  IconHome,
+  IconNotes,
+  IconTower,
   IconReceipt2,
   IconSwitchHorizontal,
   IconLogout,
@@ -9,8 +12,11 @@ import classes from './NavbarSimple.module.css';
 import { Link } from 'react-router-dom';
 
 const data = [
-  { link: '/', label: 'Home', icon: IconBellRinging },
+  { link: '/', label: 'Home', icon: IconHome },
   { link: '/events', label: 'Events', icon: IconReceipt2 },
+  { link: '/venues', label: 'Venues & Locations', icon: IconTower },
+  { link: '/transactions', label: 'Transactions', icon: IconNotes},
+  { link: '/sponsors', label: 'Sponsors', icon: IconHeartHandshake},
 ];
 
 export function NavLayout() {
@@ -22,7 +28,7 @@ export function NavLayout() {
     to={item.link}
     key={item.label}
     data-active={item.label === active || undefined}
-    onClick={() => setActive(item.label)} 
+    onClick={() => setActive(item.label)}
   >
     <item.icon className={classes.linkIcon} stroke={1.5} />
     <span>{item.label}</span>
