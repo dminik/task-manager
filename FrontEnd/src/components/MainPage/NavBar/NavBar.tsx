@@ -1,15 +1,14 @@
 import { useState } from 'react';
-
 import {
   IconHeartHandshake,
+  IconHelpCircle,
   IconHome,
   IconNotes,
-  IconTower,
   IconReceipt2,
-  IconHelpCircle,
+  IconTower,
 } from '@tabler/icons-react';
-import classes from './NavbarSimple.module.css';
 import { Link } from 'react-router-dom';
+import classes from './NavbarSimple.module.css';
 
 const data = [
   { link: '/', label: 'Home', icon: IconHome },
@@ -43,9 +42,7 @@ export function NavLayout() {
 
   return (
     <nav className={classes.navbar}>
-      <div className={classes.navbarMain}>
-        {links}
-      </div>
+      <div className={classes.navbarMain}>{links}</div>
 
       <div className={classes.footer}>
         <Link to="#" className={classes.link} onClick={(event) => event.preventDefault()}>

@@ -1,11 +1,11 @@
-import { AppShell } from '@mantine/core';
 import { IconLayoutSidebarLeftCollapse } from '@tabler/icons-react';
+import { Outlet } from 'react-router-dom';
+import { AppShell } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
 import { NavLayout } from '../NavBar/NavBar';
-import { Outlet } from 'react-router-dom';
-import { useDisclosure } from '@mantine/hooks';
 import classes from './Layout.module.css';
-import { Footer } from '../Footer/Footer';
 
 export function Layout() {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
@@ -21,7 +21,6 @@ export function Layout() {
       }}
       footer={{ height: 40 }}
     >
-
       <AppShell.Header>
         <Header />
       </AppShell.Header>
@@ -43,9 +42,9 @@ export function Layout() {
         <Outlet />
       </AppShell.Main>
 
-      <AppShell.Footer >
-        <Footer  />
-      </AppShell.Footer >
+      <AppShell.Footer>
+        <Footer />
+      </AppShell.Footer>
     </AppShell>
   );
 }

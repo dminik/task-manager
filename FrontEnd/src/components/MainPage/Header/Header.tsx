@@ -1,13 +1,8 @@
-import { useState } from 'react';
-import { Group, Code, Burger, } from '@mantine/core';
 import {
-  IconSwitchHorizontal,
-  IconLogout,
-  IconAutomaticGearbox,
-  IconManualGearbox,
+  IconBell,
   IconSettings,
-  IconBell
 } from '@tabler/icons-react';
+import { Burger, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import FastbreakLogo from '@/components/Icons/FastbreakLogo/FastbreakLogo';
 
@@ -16,14 +11,16 @@ export function Header() {
 
   return (
     <>
-      <Burger
-        opened={opened}
-        onClick={toggle}
-        hiddenFrom="sm"
-        size="sm"
-      />
+      <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '10px 20px' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          margin: '10px 20px',
+        }}
+      >
         <Group>
           <FastbreakLogo size={168} />
         </Group>
@@ -32,6 +29,6 @@ export function Header() {
           <IconSettings size={18} />
         </Group>
       </div>
-
-    </>);
+    </>
+  );
 }
