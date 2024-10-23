@@ -1,56 +1,76 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   IconHeartHandshake,
   IconHelpCircle,
   IconHome,
+  IconLayoutSidebarLeftCollapse,
   IconNotes,
   IconReceipt2,
   IconTower,
 } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
-import classes from './NavbarSimple.module.css';
+import classes from './Navbar.module.css';
 
-const data = [
-  { link: '/', label: 'Home', icon: IconHome },
-  { link: '/events', label: 'Events', icon: IconReceipt2 },
-  { link: '/venues', label: 'Venues & Locations', icon: IconTower },
-  { link: '/transactions', label: 'Transactions', icon: IconNotes },
-  { link: '/sponsors', label: 'Sponsors', icon: IconHeartHandshake },
-];
+interface NavLayoutProps {
+  collapsed: boolean;
+  onToggleNavbar: () => void;
+}
 
-export function NavLayout() {
+export function NavLayout({ collapsed, onToggleNavbar }: NavLayoutProps) {
   const [active, setActive] = useState('Home');
 
-  const links = data.map((item) => (
-    <Link
+  const mainLinksData: LinkData[] = [
+    { link: '/', label: 'Home', icon: IconHome },
+    { link: '/events', label: 'Events', icon: IconReceipt2 },
+    { link: '/venues', label: 'Venues & Locations', icon: IconTower },
+    { link: '/transactions', label: 'Transactions', icon: IconNotes },
+    { link: '/sponsors', label: 'Sponsors', icon: IconHeartHandshake },
+  ];
+
+  const bottomLinksData: LinkData[] = [
+    { link: '#', label: 'Help', icon: IconHelpCircle },
+    { link: '#', label: 'Collapse', icon: IconLayoutSidebarLeftCollapse },
+  ];
+
+  interface LinkData {
+    link: string;
+    label: string;
+    icon: React.ForwardRefExoticComponent<any>;
+  }
+
+  function MakeLink(item: LinkData, active: string, setActive: React.Dispatch<React.SetStateAction<string>>, collapsed: boolean) {
+    return <Link
       className={classes.link}
       to={item.link}
       key={item.label}
 
       data-active={item.label === active || undefined}
-      onClick={() => setActive(item.label)}
+      onClick={() => {
+        if (item.label === 'Collapse') {
+          onToggleNavbar();
+        } else {
+          setActive(item.label);
+        }
+      }}
     >
       <item.icon className={classes.linkIcon} stroke={1.5} />
-      <span>{item.label}</span>
-    </Link>
+      {!collapsed && <span>{item.label}</span>}
+    </Link>;
+  }
+
+  const mainLinks = mainLinksData.map((item) => (
+    MakeLink(item, active, setActive, collapsed)
   ));
 
-  const [collapsed, setCollapsed] = useState(false);
-
-  const toggleNavbar = () => {
-    setCollapsed(!collapsed);
-  };
-
+  const bottomLinks = bottomLinksData.map((item) => (
+    MakeLink(item, active, setActive, collapsed)
+  ));
   return (
     <nav className={classes.navbar}>
-      <div className={classes.navbarMain}>{links}</div>
-
-      <div className={classes.footer}>
-        <Link to="#" className={classes.link} >
-          <IconHelpCircle className={classes.linkIcon} stroke={1.5} />
-          <span>Help</span>
-        </Link>
-      </div>
+      <div className={classes.navbarMain}>{mainLinks}</div>
+      <div className={classes.footer}>{bottomLinks}</div>
     </nav>
   );
 }
+
+

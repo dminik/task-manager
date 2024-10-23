@@ -5,19 +5,18 @@ import { useDisclosure } from '@mantine/hooks';
 import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
 import { NavLayout } from '../NavBar/NavBar';
-import classes from './Layout.module.css';
+import { useState } from 'react';
 
 export function Layout() {
-  const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
-  const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
+  const [collapsed, setCollapsed] = useState(false);
+  const toggleNavbar = () => setCollapsed(!collapsed);
 
   return (
     <AppShell
       header={{ height: 40 }}
       navbar={{
-        width: 300,
+        width: collapsed ? 90 : 300,
         breakpoint: 'sm',
-        collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
       }}
       footer={{ height: 40 }}
     >
@@ -25,17 +24,8 @@ export function Layout() {
         <Header />
       </AppShell.Header>
 
-      <AppShell.Navbar className={classes.navbar}>
-        <IconLayoutSidebarLeftCollapse
-          onClick={toggleDesktop}
-          size={24}
-          stroke={0.7}
-          className={`${classes.icon} ${!desktopOpened ? classes['icon-rotated'] : ''}`}
-        />
-
-        <div className={classes['nav-content']}>
-          <NavLayout />
-        </div>
+      <AppShell.Navbar>
+        <NavLayout collapsed={collapsed} onToggleNavbar={toggleNavbar} />
       </AppShell.Navbar>
 
       <AppShell.Main>
