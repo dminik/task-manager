@@ -1,12 +1,8 @@
-import TaskManager from '@/components/TaskManager/TaskManager';
-import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
-import { Welcome } from '../components/Welcome/Welcome';
-import { Layout } from '@/components/MainPage/Layout/Layout';
-
 export function HomePage() {
   return (
-    <>
-      <Layout />
-    </>
+    <div>
+      <h1>Welcome to the Home Page X</h1>
+      <p>This is the home page content.</p>
+    </div>
   );
 }
