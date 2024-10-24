@@ -11,12 +11,12 @@ import {
 import { Link } from 'react-router-dom';
 import classes from './Navbar.module.css';
 
-interface NavLayoutProps {
+interface NavBarProps {
   collapsed: boolean;
   onToggleNavbar: () => void;
 }
 
-export function NavLayout({ collapsed, onToggleNavbar }: NavLayoutProps) {
+export function NavBar({ collapsed, onToggleNavbar }: NavBarProps) {
   const [active, setActive] = useState('Home');
 
   const mainLinksData: LinkData[] = [

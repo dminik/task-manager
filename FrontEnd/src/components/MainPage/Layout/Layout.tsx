@@ -4,7 +4,7 @@ import { AppShell } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
-import { NavLayout } from '../NavBar/NavBar';
+import { NavBar } from '../NavBar/NavBar';
 import { useState } from 'react';
 
 export function Layout() {
@@ -25,7 +25,7 @@ export function Layout() {
       </AppShell.Header>
 
       <AppShell.Navbar>
-        <NavLayout collapsed={collapsed} onToggleNavbar={toggleNavbar} />
+        <NavBar collapsed={collapsed} onToggleNavbar={toggleNavbar} />
       </AppShell.Navbar>
 
       <AppShell.Main>
