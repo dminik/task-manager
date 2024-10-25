@@ -4,10 +4,10 @@ import classes from './Footer.module.css';
 
 export function Footer() {
   const linksData = [
-    { label: 'Support', link: '#' },
-    { label: 'Help Center', link: '#' },
-    { label: 'Terms of Service', link: '#' },
-    { label: 'Privacy Policy', link: '#' },
+    { label: 'Support', link: '/support' },
+    { label: 'Help Center', link: '/help' },
+    { label: 'Terms of Service', link: '/terms' },
+    { label: 'Privacy Policy', link: '/policy' },
   ];
 
   return (
