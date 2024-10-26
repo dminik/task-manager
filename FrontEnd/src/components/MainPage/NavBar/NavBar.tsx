@@ -28,7 +28,7 @@ export function NavBar({ collapsed, onToggleNavbar }: NavBarProps) {
   ];
 
   const bottomLinksData: LinkData[] = [
-    { link: '#', label: 'Help', icon: IconHelpCircle },
+    { link: '/help', label: 'Help', icon: IconHelpCircle },
     { link: '#', label: 'Collapse', icon: IconLayoutSidebarLeftCollapse },
   ];
 
