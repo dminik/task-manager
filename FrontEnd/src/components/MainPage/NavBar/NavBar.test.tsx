@@ -2,6 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import { NavBar } from './NavBar';
+import { useState } from 'react';
 
 describe('NavBar component', () => {
   it('renders links with correct labels and hrefs', () => {
@@ -16,7 +17,7 @@ describe('NavBar component', () => {
             <Route path="/sponsors" element={<div>Sponsors</div>} />
             <Route path="/help" element={<div>Help</div>} />
           </Routes>
-            <NavBar collapsed={false} onToggleNavbar={() => {}}/>
+          <NavBar collapsed={false} onToggleNavbar={() => { }} />
         </MemoryRouter>
       </MantineProvider>
     );
@@ -56,7 +57,7 @@ describe('NavBar component', () => {
               <Route key={route.path} path={route.path} element={<div>{route.elementText}</div>} />
             ))}
           </Routes>
-          <NavBar collapsed={false} onToggleNavbar={() => {}}/>
+          <NavBar collapsed={false} onToggleNavbar={() => { }} />
         </MemoryRouter>
       </MantineProvider>
     );
@@ -84,5 +85,52 @@ describe('NavBar component', () => {
         expect(screen.getAllByText(route.elementText)[0]).toBeInTheDocument();
       });
     }
+  });
+
+  it('hides links when Collapse link is clicked', async () => {
+    const TestComponent = () => {
+      const [collapsed, setCollapsed] = useState(false);
+      const toggleNavbar = () => setCollapsed(!collapsed);
+
+      return (
+        <MantineProvider>
+          <MemoryRouter>
+            <Routes>
+              <Route path="/" element={<div>Home</div>} />
+              <Route path="/events" element={<div>Events</div>} />
+              <Route path="/venues" element={<div>Venues & Locations</div>} />
+              <Route path="/transactions" element={<div>Transactions</div>} />
+              <Route path="/sponsors" element={<div>Sponsors</div>} />
+              <Route path="/help" element={<div>Help</div>} />
+            </Routes>
+            <NavBar collapsed={collapsed} onToggleNavbar={toggleNavbar} />
+          </MemoryRouter>
+        </MantineProvider>
+      );
+    };
+
+    render(<TestComponent />);
+    const links = screen.getAllByRole('link');
+    const collapseLink = screen.getByRole('link', { name: 'Collapse' });
+
+    // Initially, links should be visible
+    expect(links[0]).toBeInTheDocument();
+    expect(collapseLink).toHaveTextContent('Collapse');
+
+    // Click the Collapse link
+    fireEvent.click(collapseLink);
+
+    // Links should have empty label after clicking Collapse
+    await waitFor(() => {
+      expect(collapseLink).toHaveTextContent('');
+    });
+
+    // Click the Collapse link again to toggle back
+    fireEvent.click(collapseLink);
+
+    // Links should be visible again
+    await waitFor(() => {
+      expect(collapseLink).toHaveTextContent('Collapse');
+    });
   });
 });
