@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { IconLayoutSidebarLeftCollapse } from '@tabler/icons-react';
 import { Outlet } from 'react-router-dom';
 import { AppShell } from '@mantine/core';
@@ -5,7 +6,6 @@ import { useDisclosure } from '@mantine/hooks';
 import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
 import { NavBar } from '../NavBar/NavBar';
-import { useState } from 'react';
 
 export function Layout() {
   const [collapsed, setCollapsed] = useState(false);

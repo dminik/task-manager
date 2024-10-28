@@ -1,8 +1,8 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { useState } from 'react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import { NavBar } from './NavBar';
-import { useState } from 'react';
 
 describe('NavBar component', () => {
   it('renders links with correct labels and hrefs', () => {
@@ -17,7 +17,7 @@ describe('NavBar component', () => {
             <Route path="/sponsors" element={<div>Sponsors</div>} />
             <Route path="/help" element={<div>Help</div>} />
           </Routes>
-          <NavBar collapsed={false} onToggleNavbar={() => { }} />
+          <NavBar collapsed={false} onToggleNavbar={() => {}} />
         </MemoryRouter>
       </MantineProvider>
     );
@@ -53,11 +53,11 @@ describe('NavBar component', () => {
       <MantineProvider>
         <MemoryRouter initialEntries={['/']}>
           <Routes>
-            {routes.map(route => (
+            {routes.map((route) => (
               <Route key={route.path} path={route.path} element={<div>{route.elementText}</div>} />
             ))}
           </Routes>
-          <NavBar collapsed={false} onToggleNavbar={() => { }} />
+          <NavBar collapsed={false} onToggleNavbar={() => {}} />
         </MemoryRouter>
       </MantineProvider>
     );

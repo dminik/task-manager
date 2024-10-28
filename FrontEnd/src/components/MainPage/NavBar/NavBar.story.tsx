@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { NavBar } from './NavBar';
-import { useState } from 'react';
 
 export default {
   title: 'NavBar',

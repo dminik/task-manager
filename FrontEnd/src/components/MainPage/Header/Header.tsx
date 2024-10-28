@@ -1,11 +1,8 @@
-import {
-  IconBell,
-  IconSettings,
-} from '@tabler/icons-react';
+import { IconBell, IconSettings } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 import { Burger, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import FastbreakLogo from '@/components/Icons/FastbreakLogo/FastbreakLogo';
-import { Link } from 'react-router-dom';
 
 export function Header() {
   const [opened, { toggle }] = useDisclosure();
@@ -23,7 +20,7 @@ export function Header() {
         }}
       >
         <Group>
-          <Link to="/" >
+          <Link to="/">
             <FastbreakLogo size={168} />
           </Link>
         </Group>
@@ -31,7 +28,7 @@ export function Header() {
           <Link to="#">
             <IconBell size={18} />
           </Link>
-          <Link to="#" >
+          <Link to="#">
             <IconSettings size={18} />
           </Link>
         </Group>

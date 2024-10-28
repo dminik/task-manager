@@ -1,7 +1,7 @@
-import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
-import { Footer } from './Footer';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
+import { Footer } from './Footer';
 
 describe('Footer component', () => {
   it('renders links with correct labels and hrefs', () => {
@@ -33,7 +33,7 @@ describe('Footer component', () => {
       </MantineProvider>
     );
     const links = screen.getAllByRole('link');
-    links.forEach(link => {
+    links.forEach((link) => {
       expect(link).toHaveClass(/_link*/i);
     });
   });
@@ -51,7 +51,7 @@ describe('Footer component', () => {
       <MantineProvider>
         <MemoryRouter initialEntries={['/']}>
           <Routes>
-            {routes.map(route => (
+            {routes.map((route) => (
               <Route key={route.path} path={route.path} element={<div>{route.elementText}</div>} />
             ))}
           </Routes>
